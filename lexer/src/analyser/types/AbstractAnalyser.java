@@ -1,33 +1,30 @@
 package analyser.types;
 
+
 public abstract class AbstractAnalyser
 {
+
+	protected SymbolTable table;
+	protected String[] reserved;
+	protected String identifier = "";
   
-  
-  
-  final String[] reserved;
-  final String[] tokens;
-  
-  public AbstractAnalyser(String source, String[] res)
+  public AbstractAnalyser(String s)
   {
-    
-    reserved = res;
-    tokens = source.trim().split(" ");
-    for (int i = 0; i < tokens.length; i++)
-      System.out.println(tokens[i]);
+  	
+  	table = new SymbolTable();
+  	identifier = "";
+  	
+    analyse(s);
     
   }
   
-  public abstract String whitespace(String source);
+  public void setReservedWords(String[] res)
+  {
+  	
+  	reserved = res;
+  	
+  }
   
-  public abstract void comment();
-  
-  public abstract void alphaNum();
-  
-  public abstract void number();
-  
-  public abstract void doubleQuote();
-  
-  public abstract void singleQuote();
+  protected abstract void analyse(String source);
 
 }
