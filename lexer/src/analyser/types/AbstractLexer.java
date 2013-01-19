@@ -3,7 +3,7 @@ package analyser.types;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractAnalyser
+public abstract class AbstractLexer
 {
 
 	protected Integer charIndex;
@@ -12,7 +12,7 @@ public abstract class AbstractAnalyser
 	protected String[] reserved;
 	protected List<String> tokens;
   
-  public AbstractAnalyser(String s)
+  public AbstractLexer(String s)
   {
   	
   	charIndex       = 0;

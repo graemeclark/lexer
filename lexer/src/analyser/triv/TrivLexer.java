@@ -2,12 +2,12 @@ package analyser.triv;
 
 import java.util.List;
 
-import analyser.types.AbstractAnalyser;
+import analyser.types.AbstractLexer;
 
-public class TrivAnalyser extends AbstractAnalyser
+public class TrivLexer extends AbstractLexer
 {
 
-  public TrivAnalyser(String source)
+  public TrivLexer(String source)
   {
     
     super(source);
