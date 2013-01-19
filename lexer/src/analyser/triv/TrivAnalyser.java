@@ -1,5 +1,7 @@
 package analyser.triv;
 
+import java.util.List;
+
 import analyser.types.AbstractAnalyser;
 
 public class TrivAnalyser extends AbstractAnalyser
@@ -10,31 +12,66 @@ public class TrivAnalyser extends AbstractAnalyser
     
     super(source);
     
+    String[] res = {"let", "in"};
+    super.setReservedWords(res);
+    
   }
-
-	@Override
-	protected void analyse(String source)
+  
+  @Override
+	public List<String> analyse(String source)
+	{
+  	
+    while (charIndex < source.length()) {
+    	
+  		nextChar();
+  		
+  		if (lookup().equals("RESERVED")) {
+  			addToken();
+  		}
+  		
+  		else if (Character.isWhitespace(currentChar)) {
+  			addToken();
+  		}
+  		
+  		else if (isOperator()) {
+  			addToken();
+  			addCharToken();
+      }
+  		
+  		else {
+    		addChar();
+  		}
+    	
+    }
+    
+    addToken();   
+    return tokens;
+    
+	}
+	
+  @Override
+	protected void addToken()
 	{
 		
-  	int i = 0;
-  	
-    while (i < source.length()) {
-    	
-    	char c = source.charAt(i);
-    	
-    	if (!Character.isWhitespace(c)) {
-    	
-    		if (Character.isLetter(c)) {
-    			
-    			identifier = identifier + c;
-    			i++;
-    			
-    		}
-    		else break;
-    		
-    	}
-    }
-    System.out.println(identifier);
+		if (!lexeme.trim().equals("")) {
+			tokens.add(lexeme.trim());
+			lexeme = "";			
+		}
+		
+	}
+	
+  @Override
+	protected boolean isOperator()
+	{
+		
+		switch(currentChar) {
+		
+		  case '=' : return true;
+		  case '+' : return true;
+		  default  : return false;
+		
+		}
+		
 	}
 
 }

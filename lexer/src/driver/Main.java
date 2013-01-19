@@ -8,9 +8,10 @@ public class Main
   public static void main(String[] args)
   {
     
-    String source = "let x = 3 in";
+    String source = "let var = 3 in var + var";
     
     TrivAnalyser t = new TrivAnalyser(source);
+    System.out.println(t.analyse(source));
     
   }
 

@@ -9,10 +9,10 @@ public class SymbolTable
 	Map<String, Object> table = new HashMap<String, Object>();
 	
 	
-	public void put(String key, Object val)
+	public void put(String key, Object value)
 	{
 		
-		table.put(key, val);
+		table.put(key, value);
 	
 	}
 	
@@ -20,6 +20,24 @@ public class SymbolTable
 	{
 		
 		return table.get(key);
+		
+	}
+	
+	public String toString()
+	{
+		
+		String output = "";
+		
+		for (String name: table.keySet()){
+
+      String key = name.toString();
+      String value = table.get(name).toString();  
+      output = output + key + " - " + value + "\n";
+
+
+    }
+		
+		return output;
 		
 	}
 
