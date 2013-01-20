@@ -1,7 +1,7 @@
 package driver;
 
-import analyser.triv.TrivLexer;
-import analyser.types.AbstractLexer;
+import lexer.triv.TrivLexer;
+import lexer.types.AbstractLexer;
 
 public class Main
 {

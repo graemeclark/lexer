@@ -1,4 +1,4 @@
-package analyser.types;
+package lexer.types;
 
 import java.util.Map;
 import java.util.HashMap;

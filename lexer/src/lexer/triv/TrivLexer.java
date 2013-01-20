@@ -1,8 +1,9 @@
-package analyser.triv;
+package lexer.triv;
 
 import java.util.List;
 
-import analyser.types.AbstractLexer;
+import lexer.types.AbstractLexer;
+
 
 public class TrivLexer extends AbstractLexer
 {
