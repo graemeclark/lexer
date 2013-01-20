@@ -25,7 +25,7 @@ public class TrivLexer extends AbstractLexer
     	
   		nextChar();
   		
-  		if (lookup().equals("RESERVED")) {
+  		if (lookup()) {
   			addToken();
   		}
   		
@@ -38,40 +38,22 @@ public class TrivLexer extends AbstractLexer
   			addCharToken();
       }
   		
-  		else {
+  		else if (Character.isLetter(currentChar)) {
     		addChar();
+    		readIdentifier();
+    		addToken();
   		}
-    	
+  		
+  		else if (Character.isDigit(currentChar)) {
+    		addChar();
+    		readInteger();
+    		addToken();
+  		}   	
     }
     
     addToken();   
     return tokens;
     
-	}
-	
-  @Override
-	protected void addToken()
-	{
-		
-		if (!lexeme.trim().equals("")) {
-			tokens.add(lexeme.trim());
-			lexeme = "";			
-		}
-		
-	}
-	
-  @Override
-	protected boolean isOperator()
-	{
-		
-		switch(currentChar) {
-		
-		  case '=' : return true;
-		  case '+' : return true;
-		  default  : return false;
-		
-		}
-		
 	}
 
 }
