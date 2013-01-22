@@ -30,21 +30,46 @@ public abstract class AbstractLexer
 	protected boolean isOperator()
 	{
 		
-		switch(currentChar) {
-		
+		switch(currentChar) {		
 		  case '=' : return true;
 		  case '+' : return true;
 		  case '*' : return true;
 		  case '/' : return true;
 		  case '-' : return true;
-		  default  : return false;
-		
+		  default  : return false;		
 		}
+		
+	}
+	
+	protected boolean isBoolean()
+	{
+		
+		return (lexeme.equals("true") || lexeme.equals("false"));
+		
+	}
+	
+	protected void readString()
+	{
+		
+		addChar();
+		
+		while (charIndex < source.length()) {
+			nextChar();
+			if (currentChar == '"') {
+				addChar();
+				break;				
+			}
+			else addChar();			
+		}
+		
+		addToken();		
 		
 	}
   
   protected void readIdentifier()
 	{
+  	
+  	addChar();
 		
   	while (charIndex < source.length()) {  		
   		nextChar();  		
@@ -53,11 +78,15 @@ public abstract class AbstractLexer
   		}  		
   		else break;
   	}
+  	
+  	addToken();
 		
 	}
   
   protected void readInteger()
 	{
+  	
+  	addChar();
   	
   	while (charIndex < source.length()) {  		
   		nextChar(); 		
@@ -69,6 +98,8 @@ public abstract class AbstractLexer
   		}  		
   		else break;  		
   	}
+  	
+  	addToken();
 		
 	}
   
@@ -119,7 +150,7 @@ public abstract class AbstractLexer
   	
   }
   
-  protected boolean lookup()
+  protected boolean isReserved()
   {
   	
   	boolean res = false;

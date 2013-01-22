@@ -26,7 +26,11 @@ public class TrivLexer extends AbstractLexer
     	
   		nextChar();
   		
-  		if (lookup()) {
+  		if (isReserved()) {
+  			addToken();
+  		}
+  		
+  		else if (isBoolean()) {
   			addToken();
   		}
   		
@@ -39,16 +43,16 @@ public class TrivLexer extends AbstractLexer
   			addCharToken();
       }
   		
+  		else if (currentChar == '"') {
+  			readString();
+  		}
+  		
   		else if (Character.isLetter(currentChar)) {
-    		addChar();
     		readIdentifier();
-    		addToken();
   		}
   		
   		else if (Character.isDigit(currentChar)) {
-    		addChar();
     		readInteger();
-    		addToken();
   		}   	
     }
     
